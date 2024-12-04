@@ -17,6 +17,8 @@ public class Ejercicio1Arrays {
         }
 
         System.out.println("la suma de los elementos es " +suma);
+
+        System.out.println("la vida es bella");
     }
 
 }
