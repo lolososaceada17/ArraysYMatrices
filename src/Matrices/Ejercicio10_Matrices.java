@@ -1,30 +1,46 @@
 package Matrices;
 
+import java.util.Scanner;
+
 public class Ejercicio10_Matrices {
+    static final int FILAS = 4;
+    static final int COLUMNAS = 5;
+    static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        int[][] matriz1 = {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {26, 27, 28, 29, 30}};
+        int[][] matriz = new int[FILAS][COLUMNAS];
+        rellenarMatriz(matriz);
+        boolean esSimetrico = simetricaY(matriz);
 
-        boolean comparar = compruebaSimetriaEnY(matriz1);
-        System.out.println(comparar);
+        if (esSimetrico) {
+            System.out.println("La matriz es simétrica en su eje Y");
+        } else {
+            System.out.println("La matriz no es simétrica en su eje Y");
+        }
 
-
+        // Cerrar el Scanner después de usarlo
+        sc.close();
     }
 
-    private static boolean compruebaSimetriaEnY(int[][] matriz2) {
+    private static void rellenarMatriz(int[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.println("Introduce un número para la posición [" + i + "][" + j + "]:");
+                matriz[i][j] = sc.nextInt();
+            }
+        }
+    }
 
-
-        for (int j = 0; j < matriz2[0].length/2; j++) {
-
-            for (int i = 0; i < matriz2.length; i++) {
-
-                if (matriz2[i][j] != matriz2[i][matriz2[i].length-1-j]) {
-
+    private static boolean simetricaY(int[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length / 2; j++) {
+                if (matriz[i][j] != matriz[i][matriz[i].length - 1 - j]) {
                     return false;
                 }
             }
         }
         return true;
     }
+
 }
